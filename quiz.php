@@ -18,7 +18,8 @@
       <div class="links">
         <ul>
           <?php
-            $sql = "SELECT * FROM quiz.enrolled_students WHERE user_name='$user' ;";
+            $id = $_GET['id'];
+            $sql = "SELECT * FROM quiz.enrolled_students WHERE user_id='$id' ;";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
