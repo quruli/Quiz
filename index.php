@@ -19,8 +19,6 @@
       echo "<h1>Welcome, " . $_SESSION['uname'] . "</h1>";
     } else if (!isset($_SESSION['logged-in'])) {
       echo '<a href="singup.php">Sign up here.</a>';
-
-
     }
 
     ?>

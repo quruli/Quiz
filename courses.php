@@ -13,9 +13,15 @@
   <body>
     <div class="main-wrapper">
       <h1 class="title">
-        Quizzes
+        Enrolled Courses
       </h1><hr />
-      <div class="links">
+
+			<table>
+        <tr>
+					<th>Course Code</th>
+          <th>Title</th>
+          <th>Date Enrolled</th>
+        </tr>
         <ul>
           <?php
             $id = $_GET['id'];
@@ -25,12 +31,17 @@
 
             if ($resultCheck > 0) {
               while ($row = mysqli_fetch_assoc($result)) {
-                echo '<li><a href="quizdetails.php?course=' . $row['course_code'] . '">' . $row['course_code'] . '</a></li>';
+								echo '
+		              <tr>
+										<td>' . $row['course_code'] . '</td>
+		                <td>' . $row['course_title'] . '</td>
+		                <td>' . date('d-M-Y', strtotime($row['enrollment_date'])) .
+		              '</tr>';
               }
             }
           ?>
         </ul>
-      </div>
+			</table>
     </div>
 
   </body>

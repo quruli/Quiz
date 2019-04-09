@@ -23,7 +23,12 @@
               echo '"quiz.php?id='. $id . '"';
             }
              ?>>Quizzes</a></li>
-          <li><a href="">Courses</a></li>
+          <li><a href=<?php
+            if (isset($_SESSION['logged-in'])) {
+              $id = $_SESSION['uid'];
+              echo '"courses.php?id='. $id . '"';
+            }
+             ?>>Courses</a></li>
           <li> </li>
         </ul>
       </nav>
@@ -32,7 +37,7 @@
           if (isset($_SESSION['logged-in'])) {
             $user = $_SESSION['uname'];
             echo '
-                  <a href="account.php">Welcome, ' . $user . '</a>
+                  <a href="account.php?user=' . $user . '">Welcome, ' . $user . '</a>
                   <form action="inc/logout.inc.php" method="post">
                   <button type="submit" name="logout-submit">Logout</button>
                   </form>';
