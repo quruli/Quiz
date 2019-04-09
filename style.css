@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+* {
+  margin-left: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body {
+  background-color: #F3F3F3;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+header {
+  width: calc(100% - 30px);
+  height: 60px;
+  padding: 0 15px;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-header-main {
+  height: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-header-main ul {
+  height: 100%;
+}
+
+.nav-header-main ul li {
+  list-style: none;
+  float: left;
+  height: 100%;
+}
+
+.nav-header-main ul li a {
+  display: block;
+  height: 100%;
+  padding: 0 10px;
+  border-radius: 6px;
+  line-height: 22px;
+  font-size: 20px;
+  color: #111;
+}
+
+.header-login {
+  height: 60%;
+  display: flex;
+  flex-direction: row;
+}
+
+.header-login form {
+  height: 100%;
+}
+
+.header-login form input {
+  height: 100%;
+  width: 160px;
+  padding: 0 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #F6F6F6;
+  float: left;
+  margin-left: 8px;
+}
+
+.header-login form button {
+  height: 100%;
+  padding: 0 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #333;
+  margin-left: 8px;
+  font-family: arial;
+  font-size: 13px;
+  color: #FFF;
+  text-align: center;
+}
+
+.main-wrapper {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3px;
+  padding: 15px;
+  justify-content: center;
+  background-color: white;
+}
+
+.title {
+
+}
+
+.links li {
+  list-style-type: none;
+}
+
+.main-wrapper table {
+  border-collapse: collapse;
+  font-size: 15px;
+  width: 100%;
+  align-items: center;
+}
+
+.main-wrapper table td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
