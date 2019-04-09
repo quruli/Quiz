@@ -58,6 +58,11 @@ header {
   height: 100%;
 }
 
+.header-login a {
+  line-height: 33px;
+  font-size: 16px;
+}
+
 .header-login form input {
   height: 100%;
   width: 160px;
@@ -76,7 +81,6 @@ header {
   border-radius: 4px;
   background-color: #333;
   margin-left: 8px;
-  font-family: arial;
   font-size: 13px;
   color: #FFF;
   text-align: center;
@@ -93,8 +97,13 @@ header {
   background-color: white;
 }
 
-.title {
+.main-wrapper hr {
+  width: 100%;
+  border: 1px solid #333;
+}
 
+.title {
+  margin-bottom: 1px;
 }
 
 .links li {

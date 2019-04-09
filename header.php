@@ -24,12 +24,16 @@
             }
              ?>>Quizzes</a></li>
           <li><a href="">Courses</a></li>
+          <li> </li>
         </ul>
       </nav>
       <div class="header-login">
         <?php
           if (isset($_SESSION['logged-in'])) {
-            echo '<form action="inc/logout.inc.php" method="post">
+            $user = $_SESSION['uname'];
+            echo '
+                  <a href="account.php">Welcome, ' . $user . '</a>
+                  <form action="inc/logout.inc.php" method="post">
                   <button type="submit" name="logout-submit">Logout</button>
                   </form>';
           } else {
