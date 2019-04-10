@@ -10,8 +10,35 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <form action="" method="POST">
+    <div class="main-wrapper">
+      <h1 class="title">
+        Create Quiz
+      </h1><hr />
+      <form action="inc/create.inc.php" method="POST">
+        Quiz Title
+        <input type="text" name="quiz-title" /><br />
+        Course
+        <select name="course">
+          <?php
+            $id = $_SESSION['uid'];
+            $sql = "SELECT * FROM quiz.enrolled_students WHERE user_id='$id' ;";
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
 
-    </form>
+            if ($resultCheck > 0) {
+              while ($row = mysqli_fetch_assoc($result)) {
+                $cid = $row['course_id'];
+                $ccode = $row['course_code'];
+                echo '<option value="' . $cid . '" >' . $ccode . '</option>';
+              }
+            }
+
+          ?>
+        </select><br />
+        <button type="submit" name="create-submit">Create Quiz</button>
+      </form>
+
+    </div>
+
   </body>
 </html>

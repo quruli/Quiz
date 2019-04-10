@@ -13,6 +13,10 @@ body {
   margin-right: 0px;
 }
 
+button {
+  cursor: pointer;
+}
+
 header {
   width: calc(100% - 30px);
   height: 60px;

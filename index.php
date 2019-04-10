@@ -14,14 +14,17 @@
   <div class="main-wrapper">
     <?php
     if (isset($_SESSION['invalid-pw'])) {
-      echo "<h1>Invalid password!</h1>";
+      echo '<h1 class="title">Invalid password!</h1><hr />';
     } else if (isset($_SESSION['logged-in'])) {
-      echo "<h1>Welcome, " . $_SESSION['uname'] . "</h1>";
+      echo '<h1 class="title">Welcome, ' . $_SESSION['uname'] . '</h1><hr />';
     } else if (!isset($_SESSION['logged-in'])) {
-      echo '<a href="singup.php">Sign up here.</a>';
+      echo '<h1 class="title"><a href="singup.php">Sign up here.</a></h1><hr />';
     }
-
     ?>
+
+
+
+
   </div>
 
 </body>
