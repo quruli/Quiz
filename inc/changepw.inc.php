@@ -45,8 +45,15 @@ if(isset($_POST['pw-submit'])){
 						$hashedPw = password_hash($pwNew, PASSWORD_DEFAULT);
 						mysqli_stmt_bind_param($stmt, "s", $hashedPw);
 						mysqli_stmt_execute($stmt);
-						header("Location: ../account.php?changepw=sucess&user=" . $username);
-						exit();
+
+						if (mysqli_affected_rows($conn) > 0) {
+							header("Location: ../account.php?changepw=sucess&user=" . $username);
+							exit();
+						} else {
+							header("Location: ../account.php?error=ayawmagupdate&user=" . $username);
+							exit();
+						}
+
 
 					} // end error handling
 				} //end pw verification
