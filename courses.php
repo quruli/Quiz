@@ -2,27 +2,19 @@
   include 'header.php';
   $user = $_SESSION['uname'];
 ?>
-
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <title></title>
-    <link rel="stylesheet" href="style.css">
-  </head>
   <body>
     <div class="main-wrapper">
       <h1 class="title">
         Enrolled Courses
-      </h1><hr />
+      </h1>
 
 			<table>
         <tr>
 					<th>Course Code</th>
           <th>Title</th>
           <th>Date Enrolled</th>
+          <th>Student List</th>
         </tr>
-        <ul>
           <?php
             $id = $_GET['id'];
             $sql = "SELECT * FROM quiz.enrolled_students WHERE user_id='$id' ;";
@@ -36,13 +28,10 @@
 										<td>' . $row['course_code'] . '</td>
 		                <td>' . $row['course_title'] . '</td>
 		                <td>' . date('d-M-Y', strtotime($row['enrollment_date'])) .
-		              '</tr>';
+		               '<td><a href="">View</a></td>
+                  </tr>';
               }
             }
           ?>
-        </ul>
 			</table>
     </div>
-
-  </body>
-</html>

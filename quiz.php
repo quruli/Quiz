@@ -2,23 +2,14 @@
   include 'header.php';
   $user = $_SESSION['uname'];
 ?>
-
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <title></title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
     <div class="main-wrapper">
       <h1 class="title">
         Quizzes
-      </h1><hr />
+      </h1>
       <div class="links">
         <ul>
           <?php
-            $id = $_GET['id'];
+            $id = $_SESSION['uid'];
             $sql = "SELECT * FROM quiz.enrolled_students WHERE user_id='$id' ;";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
@@ -32,6 +23,3 @@
         </ul>
       </div>
     </div>
-
-  </body>
-</html>

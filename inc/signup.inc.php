@@ -3,7 +3,7 @@
   if (isset($_POST['signup-submit'])) {
     // following file must be included to connect to the database
     //
-    require 'dbhandler.inc.php';
+    require 'dbh.inc.php';
 
     // fetch the following data using dbhandler.inc.php
     $username = $_POST['username'];
@@ -13,7 +13,7 @@
     // check if field is empty
     if (empty($username) || empty($password) || empty($pwRepeat)) {
       // load signup.php, copy username if loaded again
-      header("Location: ../signup.php?error=emptyfields&username=".$username);
+      header("Location: ../index.php?error=emptyfields&username=".$username);
       exit();
     }
     //check username, must only contain the following characters
@@ -22,7 +22,7 @@
     }
     //check password repeat
     elseif ($password !== $pwRepeat) {
-      header("Location: ../signup.php?error=pwcheck&username=".$username);
+      header("Location: ../index.php?error=pwcheck&username=".$username);
       exit();
     }
     //chck if username is taken
@@ -32,7 +32,7 @@
       $stmt = mysqli_stmt_init($conn);
       //check connection status, returns to signup.php if not connected
       if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("Location: ../signup.php?error=sqlerror");
+        header("Location: ../index.php?error=sqlerror");
         exit();
       } else {
           // pass String as data type
@@ -47,13 +47,13 @@
 
           //check if result > 1
           if ($resultCheck > 0) {
-            header("Location: ../signup.php?error=usertaken");
+            header("Location: ../index.php?error=usertaken");
           } else { //end check result
             $sql = "INSERT INTO user(user_name, user_pw, privilege_id) VALUES(?, ?, '2')";
             $stmt = mysqli_stmt_init($conn);
             //check connection
             if (!mysqli_stmt_prepare($stmt, $sql)) {
-              header("Location: ../signup.php?error=sqlerror");
+              header("Location: ../index.php?error=sqlerror");
               exit();
             } else {
               // encrpyt password using bcrypt
@@ -62,7 +62,7 @@
               // pass String as data type
               mysqli_stmt_bind_param($stmt, "ss", $username, $hashedPw);
               mysqli_stmt_execute($stmt);
-              header("Location: ../signup.php?signup=success");
+              header("Location: ../index.php?signup=success");
               exit();
 
             }
@@ -74,7 +74,7 @@
     mysqli_close($conn);
 
   } else {
-    header("Location: ../signup.php");
+    header("Location: ../index.php");
     exit();
   }
 

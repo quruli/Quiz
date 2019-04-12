@@ -1,0 +1,8 @@
+echo '
+	<tr>
+		<td>' . $row['course_code'] . '</td>
+		<td>' . $row['course_title'] . '</td>
+		<td>' . $row['date_open'] . '</td>
+		<td>' . $row['date_closed'] . '</td>
+	</tr>
+';

@@ -1,31 +1,25 @@
 <?php
   include 'header.php';
 ?>
-
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name=viewport content="width=device-width, initial-scale=1">
-  <title>Home</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
   <div class="main-wrapper">
     <?php
+    $id = $_SESSION['uid'];
     if (isset($_SESSION['invalid-pw'])) {
       echo '<h1 class="title">Invalid password!</h1><hr />';
     } else if (isset($_SESSION['logged-in'])) {
-      echo '<h1 class="title">Welcome, ' . $_SESSION['uname'] . '</h1><hr />';
+      echo '<h1 class="title">Home</h1>';
+      $type = $_SESSION['type'];
+      if ($type == 1) {
+        include 'admin.php';
+      } else if ($type == 2) {
+        include 'teacher.php';
+        echo '
+        <a href="create.php">Create Quiz</a>';
+      } else if ($type == 3) {
+        include 'student.php';
+      }
     } else if (!isset($_SESSION['logged-in'])) {
-      echo '<h1 class="title"><a href="singup.php">Sign up here.</a></h1><hr />';
+      include 'signup.php';
     }
     ?>
-
-
-
-
   </div>
-
-</body>
-</html>

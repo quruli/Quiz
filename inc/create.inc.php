@@ -1,33 +1,25 @@
 <?php
-
+	session_start();
 	if (isset($_POST['create-submit'])) {
 		require 'dbh.inc.php';
 
 		//get data
 		$qtitle = $_POST['quiz-title'];
 		$cid = $_POST['course'];
-		$uid = $_SESSION['uid'];
-		$date = date('Y-m-d', time());
+		$id = $_SESSION['uid'];
+		$date = date('Y-m-d');
 
-		if (empty($qtitle)) {
-			header("Location: ../create.php?error=emptytitle");
-			session_start();
-			exit();
+			$sql = "INSERT INTO quiz(quiz_title, course_id, user_id, date_created) VALUES('$qtitle', $cid, $id, '$date')";
+
+		if(!mysqli_query($conn, $sql)) {
+			echo("Error description: " . mysqli_error($conn));
+			echo '<br />' . $date . '<br />';
+			echo $id;
 		} else {
-			$sql = "INSERT INTO quiz(quiz_title, user_id, course_id, date_created) VALUES('$qtitle', $cid, ?, '$date')";
-			$stmt = mysqli_stmt_init($conn);
-
-			if (!mysqli_stmt_prepare($stmt, $sql)) {
-				header("Location: ../create.php?error=sqlerror");
-				exit();
-			} else {
-				mysqli_stmt_bind_param($stmt, "s", $uid);
-				mysqli_stmt_execute($stmt);
-				header("Location: ../create.php?create=success");
-				session_start();
-				$_SESSION['quiz-new'] = TRUE;
-				exit();
-			}
+			header("Location: ../create.php?create=success");
+			exit();
 		}
 
 	}
+
+?>

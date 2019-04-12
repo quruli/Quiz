@@ -30,13 +30,15 @@ if (isset($_POST['login-submit'])) {
         }
         else if ($pwdCheck == true) {
           session_start();
-          $_SESSION['logged-in'] = TRUE;
+          //info
           $_SESSION['uid'] = $row['user_id'];
           $_SESSION['uname'] = $row['user_name'];
           $_SESSION['pw'] = $row['user_pw'];
           $_SESSION['fname'] = $row['f_name'];
           $_SESSION['lname'] = $row['l_name'];
-          $id = $_SESSION['uid'];
+          $_SESSION['type'] = $row['privilege_id'];
+          $_SESSION['logged-in'] = TRUE;
+
           header("Location: ../index.php?login=success&id=".$id);
           exit();
         }

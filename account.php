@@ -33,8 +33,7 @@
         }
       ?>
       <form action="inc/changepw.inc.php" method="POST" >
-        ID
-        <input type="text" name="userid" value="<?php echo $id; ?>" readonly/><br />
+        <input type="hidden" name="userid" value="<?php echo $id; ?>" readonly/><br />
         Username
         <input type="text" name="username" value="<?php echo $user; ?>" readonly/><br />
         Current Password
