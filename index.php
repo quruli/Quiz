@@ -3,7 +3,6 @@
 ?>
   <div class="main-wrapper">
     <?php
-    $id = $_SESSION['uid'];
     if (isset($_SESSION['invalid-pw'])) {
       echo '<h1 class="title">Invalid password!</h1><hr />';
     } else if (isset($_SESSION['logged-in'])) {
