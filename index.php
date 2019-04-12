@@ -14,7 +14,8 @@
       } else if ($type == 2) {
         include 'teacher.php';
         echo '
-        <a href="create.php">Create Quiz</a>';
+        <a href="create.php">Create Quiz</a><br />
+        <a href="quiz_edit.php">Edit Quiz</a>';
       } else if ($type == 3) {
         include 'student.php';
       }

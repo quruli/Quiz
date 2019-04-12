@@ -21,6 +21,7 @@
           <th>Course</th>
           <th>Course Code</th>
           <th>Date Created</th>
+                    <th>Actions</th>
         </tr>
 
       <?php
@@ -36,7 +37,8 @@
                 <td>' . $row['course_title'] . '</td>
                 <td>' . $row['course_code'] . '</td>
                 <td>' . date('d-M-Y', strtotime($row['date_created'])) .
-              '</tr>';
+                '<td><a href="quiz_edit.php?course=' . $row['course_code'] . '">Modify</a></td>
+              </tr>';
           }
         } else if (empty($resultCheck)){
           echo 'No results found.<br />';
