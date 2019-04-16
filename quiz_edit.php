@@ -25,13 +25,13 @@
 			 <form id="multOpt-form">
 				 	<textarea rows="3" cols="40" name="qtn" placeholder="Enter question here"></textarea><br />
 					A. <input type="text" name="ans1" placeholder="Enter option here"/>
-					Is Correct<input type="checkbox" name="check_ans" value="true" /><br />
+					Is Correct<input type="radio" name="check_ans" value="true" /><br />
 					B. <input type="text" name="ans2" placeholder="Enter option here"/>
-					Is Correct<input type="checkbox" name="check_ans" value="true" /><br />
+					Is Correct<input type="radio" name="check_ans" value="true" /><br />
 					C. <input type="text" name="ans3" placeholder="Enter option here"/>
-					Is Correct<input type="checkbox" name="check_ans" value="true" /><br />
+					Is Correct<input type="radio" name="check_ans" value="true" /><br />
 					D. <input type="text" name="ans4" placeholder="Enter option here"/>
-					Is Correct<input type="checkbox" name="check_ans" value="true" /><br />
+					Is Correct<input type="radio" name="check_ans" value="true" /><br />
 					<button type="reset" name="clear">Clear</button>
 					<button type="submit" name="add-qtn" onclick="clear()">Submit</button>
 
@@ -42,9 +42,9 @@
 			 <form id="torf-form">
 				 	<textarea rows="3" cols="40" name="qtn" placeholder="Enter question here"></textarea><br />
 					<input type="text" name="ans1" value="True" readonly/>
-					Is Correct<input type="checkbox" name="check_ans" value="true" /><br />
+					Is Correct<input type="radio" name="check_ans" value="true" /><br />
 					<input type="text" name="ans2" value="False" readonly/>
-					Is Correct<input type="checkbox" name="check_ans" value="true" /><br />
+					Is Correct<input type="radio" name="check_ans" value="true" /><br />
 					<button type="submit" name="add-qtn" onclick="clear()">Submit</button>
 			 </form>
 		 </div>
