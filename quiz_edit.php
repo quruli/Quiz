@@ -20,12 +20,12 @@
 				 	<textarea rows="3" cols="40" name="qtn" placeholder="Enter question here"></textarea><br />
 					A. <input type="text" name="ans1" placeholder="Enter option here"/><br />
 					Is Correct <br />
-					Yes<input type="radio" name="check_ans" value="1" /><br />
-					No<input type="radio" name="check_ans" value="0" /><br />
+					Yes<input type="radio" name="check_ans1" value="1" /><br />
+					No<input type="radio" name="check_ans1" value="0" /><br />
 					B. <input type="text" name="ans2" placeholder="Enter option here"/><br />
 					Is Correct <br />
-					Yes<input type="radio" name="check_ans" value="1" /><br />
-					No<input type="radio" name="check_ans" value="0" /><br />
+					Yes<input type="radio" name="check_ans2" value="1" /><br />
+					No<input type="radio" name="check_ans2" value="0" /><br />
 					C. <input type="text" name="ans3" placeholder="Enter option here"/><br />
 					Is Correct <br />
 					Yes<input type="radio" name="check_ans" value="1" /><br />
