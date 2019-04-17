@@ -37,7 +37,7 @@
                 <td>' . $row['course_title'] . '</td>
                 <td>' . $row['course_code'] . '</td>
                 <td>' . date('d-M-Y', strtotime($row['date_created'])) .
-                '<td><a href="quiz_edit.php?quiz_id=' . $row['quiz_id'] . '">Modify</a></td>
+                '<td><button class="generic"><a href="quiz_edit.php?quiz_id=' . $row['quiz_id'] . '">Modify</a></button></td>
               </tr>';
           }
         } else if (empty($resultCheck)){

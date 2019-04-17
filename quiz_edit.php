@@ -40,14 +40,15 @@
 					<label for="date-created">Date Created</label>
 					<input type="text" name="date-created" value="<?php echo $date ?>" />
 				</li>
-				<li>
-					<button>Update</button>
+				<li class="flex-end">
+					<button type="submit" name="quiz-update">Update</button>
+					<button type="submit" name="quiz-delete" class="button-red">Delete</button>
 				</li>
 			 </ul>
 		 </form>
 
 		 <form action="">
-			 <button type="submit" class="generic">Multiple Options</button>
+			 <button type="submit" class="generic">Multiple Choice</button>
 			 <button type="submit" class="generic">True or False</button>
 			 <button type="submit" class="generic">Multiple Answers</button>
 		 </form>

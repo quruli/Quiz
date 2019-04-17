@@ -10,6 +10,8 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   margin-top: 0px;
   margin-right: 0px;
+  max-width: 1024px;
+  margin: auto;
 }
 
 button {
@@ -37,6 +39,10 @@ header {
   align-items: center;
   border-bottom: solid 1px;
   border-color: #E5E8E8;
+}
+
+.button-red {
+  background-color: #E74C3C !important;
 }
 
 .nav-header-main {
@@ -227,6 +233,10 @@ table, td, th {
   margin-bottom: 8px;
 }
 
+.flex-end {
+  justify-content: flex-end;
+}
+
 .account-form li label {
   flex: 1 0 120px;
   max-width: 220px;
@@ -240,15 +250,19 @@ table, td, th {
   height: 2.5em;
   padding: 0 10px;
   background-color: #3498DB;
+  margin-left: 3px;
 }
 
 .account-form li input {
   padding: 0 15px;
-  max-width: 300px;
 }
 
 .generic {
   height: 2.5em;
   padding: 0 10px;
   background-color: #3498DB;
+}
+
+.generic a {
+  color: #FFF;
 }
