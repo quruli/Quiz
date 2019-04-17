@@ -4,7 +4,7 @@
   <div class="main-wrapper">
     <?php
     if (isset($_SESSION['invalid-pw'])) {
-      echo '<h1 class="title">Invalid password!</h1><hr />';
+      echo '<h1 class="title">Invalid password!</h1>';
     } else if (isset($_SESSION['logged-in'])) {
       echo '<h1 class="title">Home</h1>';
       $type = $_SESSION['type'];
