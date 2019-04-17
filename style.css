@@ -266,3 +266,21 @@ table, td, th {
 .generic a {
   color: #FFF;
 }
+
+.list {
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+}
+
+.list hr {
+  height: 0.5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.list button {
+  width: 8em;
+  height: 2em;
+  background-color: #3498DB;
+}
