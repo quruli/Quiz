@@ -28,7 +28,7 @@
 										<td>' . $row['course_code'] . '</td>
 		                <td>' . $row['course_title'] . '</td>
 		                <td>' . date('d-M-Y', strtotime($row['enrollment_date'])) .
-		               '<td><button>View</button></td>
+		               '<td><button class="generic">View</button></td>
                   </tr>';
               }
             }

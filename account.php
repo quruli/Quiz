@@ -1,6 +1,6 @@
 <?php
   include 'header.php';
-  $user = $_GET['user'];
+  $user = $_SESSION['uname'];
   $sql = "SELECT * FROM quiz.user WHERE user_name='$user' ;";
   $result = mysqli_query($conn, $sql);
   $resultCheck = mysqli_num_rows($result);
@@ -61,6 +61,7 @@
             <label for="f-name">Last Name</label>
             <input type="text" name="lname" value="<?php echo $lname; ?>" readonly/>
           </li>
+
         </ul>
       </form>
     </div>
