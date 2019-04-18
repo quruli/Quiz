@@ -57,31 +57,38 @@
 
 	 <div class="modal">
 		<h2>New Question - Multiple Choice</h2>
-		<form class="account-form">
+		<form class="account-form" method="post" action="inc/question_add.inc.php">
 			<ul>
 				<li>
-					<label for="question-text">Question Text</label>
-					<textarea rows="4" cols="50" placeholder="Enter question here."></textarea>
+					<label for="question-text">Question</label>
+					<textarea rows="4" cols="30" placeholder="Enter question here."></textarea>
+				</li>
+				<li class="flex-end">
+					Is Correct?
 				</li>
 				<li>
 					<label for="ans1">A.</label>
 					<input type="text" name="ans1" />
+					<input type="radio" name="check-ans" value="1"/>
 				</li>
 				<li>
 					<label for="ans2">B.</label>
 					<input type="text" name="ans2" />
+					<input type="radio" name="check-ans" value="1" />
 				</li>
 				<li>
 					<label for="ans3">C.</label>
 					<input type="text" name="ans3" />
+					<input type="radio" name="check-ans" value="1" />
 				</li>
 				<li>
 					<label for="ans4">D.</label>
 					<input type="text" name="ans4" />
+					<input type="radio" name="check-ans" value="1" />
 				</li>
 				<li class="flex-end">
-					<button type="submit">Clear</button>
-					<button type="submit">Add</button>
+					<button type="reset">Clear</button>
+					<button type="submit" name="add-qtn">Add</button>
 				</li>
 			</ul>
 		</form>
@@ -91,8 +98,5 @@
  </div>
 
  <script>
-	function clear() {
-		document.getElementById("multOpt-form").reset();
-	}
 
  </script>
