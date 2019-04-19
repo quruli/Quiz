@@ -21,11 +21,11 @@
           <th>Course</th>
           <th>Course Code</th>
           <th>Date Created</th>
-                    <th>Actions</th>
+          <th>Actions</th>
         </tr>
 
       <?php
-        $sql = "SELECT * FROM quiz.list_of_quizzes WHERE course_code='$code'; ";
+        $sql = "SELECT * FROM quiz.list_of_quizzes WHERE course_code='$code' AND user_name='$user'; ";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
 
@@ -37,7 +37,7 @@
                 <td>' . $row['course_title'] . '</td>
                 <td>' . $row['course_code'] . '</td>
                 <td>' . date('d-M-Y', strtotime($row['date_created'])) .
-                '<td><a href="quiz_edit.php?course=' . $row['course_code'] . '">Modify</a></td>
+                '<td><button class="generic"><a href="quiz_edit.php?quiz_id=' . $row['quiz_id'] . '">Modify</a></button></td>
               </tr>';
           }
         } else if (empty($resultCheck)){

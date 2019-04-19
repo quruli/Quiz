@@ -28,10 +28,17 @@
 										<td>' . $row['course_code'] . '</td>
 		                <td>' . $row['course_title'] . '</td>
 		                <td>' . date('d-M-Y', strtotime($row['enrollment_date'])) .
-		               '<td><a href="">View</a></td>
+		               '<td><button  class="generic trigger">View</button></td>
                   </tr>';
               }
             }
           ?>
 			</table>
+
+      <div class="list">
+        <h2><?php echo "IT223"?></h2><hr /><button>Show More</button>
+      </div>
+
     </div>
+
+</body>

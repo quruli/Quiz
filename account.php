@@ -1,6 +1,6 @@
 <?php
   include 'header.php';
-  $user = $_GET['user'];
+  $user = $_SESSION['uname'];
   $sql = "SELECT * FROM quiz.user WHERE user_name='$user' ;";
   $result = mysqli_query($conn, $sql);
   $resultCheck = mysqli_num_rows($result);
@@ -25,28 +25,44 @@
 <body>
 
   <div class="main-wrapper">
-    <h1 class="title">Account Settings</h1><hr /><br />
-    <div class="account-form">
+    <h1 class="title">Account Settings</h1><br />
+    <div>
       <?php
         if (isset($_SESSION['empty-field'])) {
           echo 'Empty fields.';
         }
       ?>
-      <form action="inc/changepw.inc.php" method="POST" >
-        <input type="hidden" name="userid" value="<?php echo $id; ?>" readonly/><br />
-        Username
-        <input type="text" name="username" value="<?php echo $user; ?>" readonly/><br />
-        Current Password
-        <input type="password" name="current-pw" autocomplete="nope"/><br /> <!-- autocomplete is being ignored by firefox -->
-        New Password
-        <input type="password" name="new-pw" /><br />
-        Repeat New Password
-        <input type="password" name="repeat-pw" /><br />
-        <button type="submit" name="pw-submit">Change Password</button><br />
-        First Name
-        <input type="text" name="fname" value="<?php echo $fname; ?>" readonly/><br />
-        Last Name
-        <input type="text" name="lname" value="<?php echo $lname; ?>" readonly/><br />
+      <form action="inc/changepw.inc.php" method="POST" class="account-form">
+        <ul>
+          <li>
+            <label for="username">Username</label>
+            <input type="text" name="username" value="<?php echo $user; ?>" readonly/>
+          </li>
+          <li>
+            <label for="current-pw">Current Password</label>
+            <input type="password" name="current-pw" autocomplete="nope"/>
+          </li>
+          <li>
+            <label for="new-pw">New Password</label>
+            <input type="password" name="new-pw" /><br />
+          </li>
+          <li>
+            <label for="repeat-pw">Repeat Password</label>
+            <input type="password" name="repeat-pw" />
+          </li>
+          <li>
+            <button type="submit" name="pw-submit">Change Password</button>
+          </li>
+          <li>
+            <label for="f-name">First Name</label>
+            <input type="text" name="fname" value="<?php echo $fname; ?>" readonly/>
+          </li>
+          <li>
+            <label for="f-name">Last Name</label>
+            <input type="text" name="lname" value="<?php echo $lname; ?>" readonly/>
+          </li>
+
+        </ul>
       </form>
     </div>
 
