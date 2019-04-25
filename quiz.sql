@@ -97,6 +97,7 @@ DROP TABLE IF EXISTS `list_of_quizzes`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 /*!50001 CREATE VIEW `list_of_quizzes` AS SELECT 
+ 1 AS `quiz_id`,
  1 AS `quiz_title`,
  1 AS `user_name`,
  1 AS `course_title`,
@@ -118,6 +119,7 @@ CREATE TABLE `options` (
   `description` text NOT NULL,
   `question_id` int(11) NOT NULL,
   `quiz_id` int(11) DEFAULT NULL,
+  `is_correct` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`opt_id`),
   KEY `question_id_FK` (`question_id`),
   KEY `quiz_id_FK_idx` (`quiz_id`),
@@ -131,7 +133,7 @@ CREATE TABLE `options` (
 
 LOCK TABLES `options` WRITE;
 /*!40000 ALTER TABLE `options` DISABLE KEYS */;
-INSERT INTO `options` VALUES (1,'A?',1,1),(2,'B?',1,1),(3,'C?',1,1),(4,'D?',1,1),(5,'A?',2,1),(6,'B?',2,1),(7,'C?',2,1),(8,'D?',2,1);
+INSERT INTO `options` VALUES (1,'A?',1,1,1),(2,'B?',1,1,0),(3,'C?',1,1,0),(4,'D?',1,1,0),(5,'A?',2,1,0),(6,'B?',2,1,0),(7,'C?',2,1,1),(8,'D?',2,1,0);
 /*!40000 ALTER TABLE `options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,10 +172,13 @@ CREATE TABLE `question` (
   `question_id` int(11) NOT NULL AUTO_INCREMENT,
   `description` text NOT NULL,
   `quiz_id` int(11) NOT NULL,
+  `category_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`question_id`),
   KEY `quiz_id_FK` (`quiz_id`),
+  KEY `category_id_FK_idx` (`category_id`),
+  CONSTRAINT `category_id_FK` FOREIGN KEY (`category_id`) REFERENCES `question_categories` (`category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `quiz_id_FK` FOREIGN KEY (`quiz_id`) REFERENCES `quiz` (`quiz_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,8 +187,32 @@ CREATE TABLE `question` (
 
 LOCK TABLES `question` WRITE;
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
-INSERT INTO `question` VALUES (1,'First question',1),(2,'Second question',1),(3,'Third question',1);
+INSERT INTO `question` VALUES (1,'First question',1,2),(2,'Second question',1,2),(3,'Third question',1,2),(4,'Q1',2,2),(5,'Q2',2,2),(6,'Q3',2,2),(7,'Q4',2,2),(8,'Q1',3,2),(9,'Q2',3,2),(10,'Q3',3,2);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `question_categories`
+--
+
+DROP TABLE IF EXISTS `question_categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `question_categories` (
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_desc` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `question_categories`
+--
+
+LOCK TABLES `question_categories` WRITE;
+/*!40000 ALTER TABLE `question_categories` DISABLE KEYS */;
+INSERT INTO `question_categories` VALUES (1,'Multiple Choice'),(2,'True or False'),(3,'Multiple Answer');
+/*!40000 ALTER TABLE `question_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -220,6 +249,27 @@ INSERT INTO `quiz` VALUES (1,'Quiz #1',4,1,'2019-04-02','2019-04-01 16:00:00','2
 UNLOCK TABLES;
 
 --
+-- Temporary view structure for view `quiz_question`
+--
+
+DROP TABLE IF EXISTS `quiz_question`;
+/*!50001 DROP VIEW IF EXISTS `quiz_question`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `quiz_question` AS SELECT 
+ 1 AS `quiz_id`,
+ 1 AS `quiz_title`,
+ 1 AS `user_id`,
+ 1 AS `author`,
+ 1 AS `course_id`,
+ 1 AS `course_code`,
+ 1 AS `question_id`,
+ 1 AS `description`,
+ 1 AS `category_id`,
+ 1 AS `category`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `user`
 --
 
@@ -233,6 +283,7 @@ CREATE TABLE `user` (
   `privilege_id` int(11) NOT NULL,
   `f_name` tinytext,
   `l_name` tinytext,
+  `birthdate` date DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `privilege_id_FK` (`privilege_id`),
   CONSTRAINT `privilege_id_FK` FOREIGN KEY (`privilege_id`) REFERENCES `privilege` (`privilege_id`)
@@ -245,7 +296,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'administrator','admin',1,NULL,NULL),(2,'user1','$2y$10$TTiU0VXkbe3uMzYpeNFQneOaWcSF7TnFi/W2KB1MuipvaSO70J/5C',2,'Cardo','Dalisay'),(3,'mvn','$2y$10$Wrb95uoCqi4apakGbebgT.UjrzrC6THO1ThovdIAzYVoM3BoXDcJG',2,'Mvn','Rsr'),(4,'mvnrsr','$2y$10$TJ.S09GoyEqmn4Kw1rnUDuX0.DPntqmT.CZj2G1O.Ypt9JGVGwygC',3,'Mivien','Rosario'),(5,'admin','$2y$10$/VVGRdS.a3GpeeATxy6OO.n3AJvVdT5aO1h9NoHJEv04VdGEgPINi',1,NULL,NULL),(6,'teacher','$2y$10$Ytmk3lbBYv//l60XOE9wA.xh03PQzdc/SKhgu9EAsBzHG1VAX.0cS',2,NULL,NULL);
+INSERT INTO `user` VALUES (1,'administrator','admin',1,NULL,NULL,NULL),(2,'user1','$2y$10$TTiU0VXkbe3uMzYpeNFQneOaWcSF7TnFi/W2KB1MuipvaSO70J/5C',2,'Cardo','Dalisay',NULL),(3,'mvn','$2y$10$Wrb95uoCqi4apakGbebgT.UjrzrC6THO1ThovdIAzYVoM3BoXDcJG',2,'Mvn','Rsr',NULL),(4,'mvnrsr','$2y$10$TJ.S09GoyEqmn4Kw1rnUDuX0.DPntqmT.CZj2G1O.Ypt9JGVGwygC',3,'Mivien','Rosario',NULL),(5,'admin','$2y$10$/VVGRdS.a3GpeeATxy6OO.n3AJvVdT5aO1h9NoHJEv04VdGEgPINi',1,NULL,NULL,NULL),(6,'teacher','$2y$10$Ytmk3lbBYv//l60XOE9wA.xh03PQzdc/SKhgu9EAsBzHG1VAX.0cS',2,'Teacher','Teach',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,7 +311,6 @@ CREATE TABLE `user_ans` (
   `user_ans_id` int(11) NOT NULL AUTO_INCREMENT,
   `opt_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `is_correct` tinyint(1) NOT NULL,
   `ans_time` datetime NOT NULL,
   PRIMARY KEY (`user_ans_id`),
   KEY `opt_id_FK` (`opt_id`),
@@ -326,7 +376,25 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `list_of_quizzes` AS select `q`.`quiz_title` AS `quiz_title`,`u`.`user_name` AS `user_name`,`c`.`course_title` AS `course_title`,`c`.`course_code` AS `course_code`,`q`.`date_created` AS `date_created`,`q`.`date_open` AS `date_open`,`q`.`date_closed` AS `date_closed` from ((`quiz` `q` join `user` `u` on((`q`.`user_id` = `u`.`user_id`))) join `course` `c` on((`q`.`course_id` = `c`.`course_id`))) order by `c`.`course_title` */;
+/*!50001 VIEW `list_of_quizzes` AS select `q`.`quiz_id` AS `quiz_id`,`q`.`quiz_title` AS `quiz_title`,`u`.`user_name` AS `user_name`,`c`.`course_title` AS `course_title`,`c`.`course_code` AS `course_code`,`q`.`date_created` AS `date_created`,`q`.`date_open` AS `date_open`,`q`.`date_closed` AS `date_closed` from ((`quiz` `q` join `user` `u` on((`q`.`user_id` = `u`.`user_id`))) join `course` `c` on((`q`.`course_id` = `c`.`course_id`))) order by `c`.`course_title` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `quiz_question`
+--
+
+/*!50001 DROP VIEW IF EXISTS `quiz_question`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `quiz_question` AS select `q`.`quiz_id` AS `quiz_id`,`q`.`quiz_title` AS `quiz_title`,`u`.`user_id` AS `user_id`,`u`.`user_name` AS `author`,`c`.`course_id` AS `course_id`,`c`.`course_code` AS `course_code`,`qn`.`question_id` AS `question_id`,`qn`.`description` AS `description`,`qc`.`category_id` AS `category_id`,`qc`.`category_desc` AS `category` from ((((`quiz` `q` join `question` `qn` on((`q`.`quiz_id` = `qn`.`quiz_id`))) join `user` `u` on((`q`.`user_id` = `u`.`user_id`))) join `course` `c` on((`q`.`course_id` = `c`.`course_id`))) join `question_categories` `qc` on((`qn`.`category_id` = `qc`.`category_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -358,4 +426,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-13  0:37:50
+-- Dump completed on 2019-04-24 22:51:41
