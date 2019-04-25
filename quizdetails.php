@@ -61,7 +61,8 @@
             if ($type == 2) { //teacher user type returns quiz_edit.php
               echo 'quiz_edit.php?quiz_id=' . $row['quiz_id']. '">Modify</a></button></td>';
             } else if ($type == 3) { //student returns perform.php
-              echo 'perform.php?quiz_id=' . $row['quiz_id'] . '">View</a></button></td>';
+              $offset = 0;
+              echo 'perform.php?quiz_id=' . $row['quiz_id'] . '&offset='.$offset.'">View</a></button></td>';
             }
 
             echo '</tr>';
