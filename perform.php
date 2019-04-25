@@ -1,5 +1,6 @@
 <?php
 	require 'header.php';
+
  ?>
 
 <body>
@@ -9,23 +10,26 @@
 		</h1>
 		<form method="post">
 			<?php
-				$offset = $_GET['offset'];
-				$qid = $_GET['quiz_id'];
-				$sql = "SELECT * FROM quiz.qtn_opt where quiz_id=$qid limit 1 offset $offset;";
-				$result = mysqli_query($conn, $sql);
-				$resultCheck = mysqli_num_rows($result); //get num of rows
+				include 'inc/get_question.inc.php';
+			?>
+			<ul>
+				<?php include 'inc/get_opt.inc.php';?>
+			</ul>
+			<?php
+				$qId = $_GET['quiz_id'];
+				$qn = $_GET['offset'];
+				$qnNum = $_SESSION['qnNum'];
 
 
-				if ($resultCheck > 0) {
-					//while ($offset != $resultCheck) {
-						while ($row = mysqli_fetch_assoc($result)) {
-							echo $row['qn_desc'];
-						}
+				echo
+				'<li>
+					<button class="generic"><a href="perform.php?quiz_id='.$qId.'&offset='.($qn-1).'">Previous</a></button>
+				</li>';
 
-					//}
-
-				//	echo '<button type="submit" class="generic"><a href="perform.php?quiz_id='.$qid.'&offset='.$offset.'">Next</a></button>';
-				}
+				echo
+				'<li>
+					<button class="generic"><a href="perform.php?quiz_id='.$qId.'&offset='.($qn+1).'">Next</a></button>
+				</li>';
 
 			?>
 		</form>
